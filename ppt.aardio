@@ -1,0 +1,30 @@
+//操作ppt
+
+import com;
+import console;
+
+var wps = com.CreateObject("KWPP.Application")
+
+
+ppt = wps.Presentations.Open(io.fullpath("/")++"1.pptx");
+
+var slides = ppt.Slides;
+
+for(k1,v1 in com.each( slides )){
+	//console.dump(v1.Shapes.HasTextFrame);
+	for(k,v in com.each(v1.Shapes)){
+		//console.dump(k,v)
+		if(v.HasTextFrame){
+			//console.dump(v.TextFrame.TextRange.Text);
+			//v.TextFrame.TextRange.Replace("52233", "实际文本")
+			v.TextFrame.TextRange.Text = "实际文本";
+		}	
+	}	
+}
+
+ppt.SaveAs(io.fullpath("/")++"修改后的演示文稿.pdf",17);
+
+
+//wps.Quit();
+
+console.pause();
