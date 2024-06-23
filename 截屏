@@ -17,3 +17,48 @@ bit1 = gdip.bitmap(bitmap);
 bit1.save("./55.png")
 ::DeleteDC(ddc);
 ::DeleteObject(bit1);
+
+
+import console;
+import gdip.snap;
+import winex;
+import winex.mainWindows;
+import win;
+import win.ui;
+/**
+var status = ::RECT();
+::SystemParametersInfo(0x30/*_SPI_GETDRAGFULLWINDOWS*/,0,status,0);
+                       
+console.dump(status);
+**/
+/*
+var bmp = gdip.snap();
+bmp.save("/test.jpg");
+*/
+
+/**
+winex.enumTop(
+	function(hwnd){
+ 		console.dump(win.getText(hwnd))
+ 		//win.isVisible(__/*输入窗口句柄*/) 
+	}
+)
+**/
+
+//console.dump(winex.findActivate())
+var xys = {};
+
+for hwnd,title in winex.each('',"<^Program Manager>"){
+ if(winex.isVisible(hwnd) && title !=='' && !win.isZoomed(hwnd)){
+ 	table.insert(xys,win.getClientRect(hwnd));
+ }
+}
+
+console.dump(xys);
+
+
+
+
+
+
+console.pause();
