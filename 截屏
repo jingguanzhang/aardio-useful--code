@@ -1,0 +1,19 @@
+
+import console;
+import win;
+import win.ui;
+import gdip.bitmap;
+
+
+
+hwnd = ::User32.GetDesktopWindow();
+dc = ::GetWindowDC(hwnd);
+ddc = ::CreateCompatibleDC(dc);
+ 
+bitmap = ::CreateCompatibleBitmap(dc, 500, 500);
+::SelectObject(ddc , bitmap);
+::BitBlt(ddc, 0, 0,500, 500,dc, 0, 0, 0xCC0020);
+bit1 = gdip.bitmap(bitmap);
+bit1.save("./55.png")
+::DeleteDC(ddc);
+::DeleteObject(bit1);
